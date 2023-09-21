@@ -52,7 +52,7 @@ void	convert_lst_to_char(t_game *game)
 	}
 }
 
-void	check_map_extession(char *path)
+void	check_map_extension(char *path)
 {
 	char	*extension;
 
@@ -73,7 +73,7 @@ void	build_map(char *path, t_game *game)
 {
 	int	fd;
 
-	check_map_extession(path);
+	check_map_extension(path);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		error_msg("Error: Map not found");

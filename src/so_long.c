@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 00:02:37 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 23:04:34 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:20:42 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,15 @@
 
 static int	loop(t_game *game)
 {
-	mlx_clear_window(game->mlx, game->window);
 	draw_background(game);
-	if (game->end_game == 0)
-	{
-		move_enemy(game);
-		draw_wall(game);
-		draw_collectible(game);
-		draw_exit(game);
-		draw_enemy(game);
-		draw_player(game);
-	}
-	else
-	{
-		select_option(game);
-	}
+	move_enemy(game);
+	draw_wall(game);
+	draw_collectible(game);
+	draw_exit(game);
+	draw_enemy(game);
+	draw_player(game);
+	mlx_put_image_to_window(game->mlx, game->window, game->image_buffer.img, 0, 0);
+	
 	return (EXIT_SUCCESS);
 }
 

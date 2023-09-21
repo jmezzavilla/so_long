@@ -12,13 +12,43 @@
 
 #include "so_long.h"
 
-void	draw(int x, int y, void *sprite, t_game *game)
+static void	put_pixel(t_buffer *img, int x, int y, int color)
 {
-	if (x < -BLOCK_PIXEL || y < -BLOCK_PIXEL || x > game->map->width
-		|| y > game->map->height)
+	char	*dst;
+
+	if (x < 0 || y < 0 || x >= img->width || y >= img->height)
 		return ;
-	mlx_put_image_to_window(game->mlx, game->window, sprite, x * BLOCK_PIXEL, y
-		* BLOCK_PIXEL);
+
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+static int get_pixel_color(t_buffer* sprite, int x, int y)
+{
+	char	*dst;
+
+	if (x < 0 || y < 0 || x >= sprite->width || y >= sprite->height)
+		return (0);
+
+	dst = sprite->addr + (y * sprite->line_length + x * (sprite->bits_per_pixel / 8));
+	return (*(unsigned int *)dst);
+}
+
+void	draw(int x, int y, t_buffer* sprite, t_game *game)
+{
+	int ix = 0;
+	int iy = 0;
+	int color;
+
+	while (iy < sprite->height) {
+		ix = 0;
+		while (ix < sprite->width) {
+			color = get_pixel_color(sprite, ix, iy);
+			put_pixel(&game->image_buffer, (x * BLOCK_PIXEL) + ix, (y * BLOCK_PIXEL) + iy, color);
+			ix++;
+		}
+		iy++;
+	}
 }
 
 void	draw_map_game_over(t_game *game)

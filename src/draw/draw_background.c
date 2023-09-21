@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:48:46 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:28:59 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:20:41 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,7 @@ void	draw_background(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			if (game->map->matrix[y][x] == '0' || game->map->matrix[y][x] == 'M'
-				|| game->map->matrix[y][x] == 'P'
-				|| game->map->matrix[y][x] == 'C'
-				|| game->map->matrix[y][x] == 'E')
-				draw(x, y, game->sprites->tiles[0], game);
-			else if (game->map->matrix[y][x] == 'B')
-				draw(x, y, game->sprites->tiles[2], game);
+			draw(x, y, &game->sprites->tiles[0], game);
 			x++;
 		}
 		y++;

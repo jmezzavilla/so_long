@@ -61,7 +61,7 @@ void	move_enemy(t_game *game)
 	while (lst)
 	{
 		enemy = ((t_enemy *)lst->content);
-		move = rand() % 1500;
+		move = rand() % 450;
 		if (move == 1)
 			move_left_enemy(game, enemy);
 		else if (move == 2)

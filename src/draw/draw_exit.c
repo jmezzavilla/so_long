@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:48:59 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:30:00 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:23:45 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	exit_game(t_game *game)
 	x = game->player->coord->x / BLOCK_PIXEL;
 	if (game->total_collectibles == 0 && game->map->matrix[y][x] == 'E')
 	{
-		game->end_game = 1;
+		end_game(game);
 	}
 }
 
-int	*get_exit_sprite(t_game *game)
+t_buffer	*get_exit_sprite(t_game *game)
 {
-	if (game->total_collectibles == 0 && game->exit_animation_pos == 100)
+	if (game->total_collectibles == 0 && game->exit_animation_pos == 10)
 	{
 		if (game->exit_animation != E_END)
 			game->exit_animation += 1;
@@ -35,7 +35,7 @@ int	*get_exit_sprite(t_game *game)
 	}
 	else if (game->total_collectibles == 0)
 		game->exit_animation_pos++;
-	return (game->sprites->exit[game->exit_animation]);
+	return (&game->sprites->exit[game->exit_animation]);
 }
 
 void	draw_exit(t_game *game)

@@ -39,9 +39,9 @@ void	get_item(t_game *game)
 	}
 }
 
-int	*get_collectible_sprite(t_collectible *collectible, t_game *game)
+t_buffer	*get_collectible_sprite(t_collectible *collectible, t_game *game)
 {
-	if (collectible->animation_pos == 50)
+	if (collectible->animation_pos == 1)
 	{
 		if (collectible->animation == C_END)
 		{
@@ -53,7 +53,7 @@ int	*get_collectible_sprite(t_collectible *collectible, t_game *game)
 	}
 	else
 		collectible->animation_pos++;
-	return (game->sprites->collectible[collectible->animation]);
+	return (&game->sprites->collectible[collectible->animation]);
 }
 
 void	draw_collectible(t_game *game)

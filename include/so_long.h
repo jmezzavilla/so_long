@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 16:53:40 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 18:47:26 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:22:36 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,23 @@ typedef struct s_exit
 	t_coord		*coord;
 }				t_exit;
 
+typedef struct	s_buffer {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}				t_buffer;
+
 typedef struct s_sprites
 {
-	void		*player[TOTAL_SPRITE_PLAYER];
-	void		*collectible[TOTAL_SPRITE_COLLECTIBLE];
-	void		*enemy[TOTAL_SPRITE_ENEMY];
-	void		*tiles[TOTAL_SPRITE_TILES];
-	void		*exit[TOTAL_SPRITE_EXIT];
-	void		*game_over[TOTAL_SPRITE_GAMEOVER];
+	t_buffer	player[TOTAL_SPRITE_PLAYER];
+	t_buffer	collectible[TOTAL_SPRITE_COLLECTIBLE];
+	t_buffer	enemy[TOTAL_SPRITE_ENEMY];
+	t_buffer	tiles[TOTAL_SPRITE_TILES];
+	t_buffer	exit[TOTAL_SPRITE_EXIT];
 }				t_sprites;
 
 typedef struct s_enemy
@@ -79,6 +88,8 @@ typedef struct s_player
 	int			steps;
 }				t_player;
 
+
+
 typedef struct s_game
 {
 	t_map		*map;
@@ -89,6 +100,7 @@ typedef struct s_game
 	t_sprites	*sprites;
 	void		*mlx;
 	void		*window;
+	t_buffer	image_buffer;
 	int			exit_animation;
 	int			exit_animation_pos;
 	int			total_collectibles;
@@ -125,7 +137,7 @@ void			draw_collectible(t_game *game);
 void			draw_exit(t_game *game);
 void			draw_count_steps(t_game *game);
 
-void			draw(int x, int y, void *sprite, t_game *game);
+void			draw(int x, int y, t_buffer *sprite, t_game *game);
 
 int				player_walk_sprite(t_game *game);
 

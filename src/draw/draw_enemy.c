@@ -23,16 +23,16 @@ static int	draw_move_enemy(t_enemy *enemy)
 	return (enemy->animation_pos);
 }
 
-int	*get_enemy_sprite(t_enemy *enemy, t_game *game)
+t_buffer	*get_enemy_sprite(t_enemy *enemy, t_game *game)
 {
-	if (enemy->animation == 150)
+	if (enemy->animation == 5)
 	{
 		enemy->animation = 0;
 		draw_move_enemy(enemy);
 	}
 	else
 		enemy->animation += 1;
-	return (game->sprites->enemy[enemy->animation_pos]);
+	return (&game->sprites->enemy[enemy->animation_pos]);
 }
 
 void	draw_enemy(t_game *game)
@@ -44,8 +44,12 @@ void	draw_enemy(t_game *game)
 	while (lst)
 	{
 		enemy = (t_enemy *)lst->content;
-		mlx_put_image_to_window(game->mlx, game->window, get_enemy_sprite(enemy,
-				game), enemy->coord->x, enemy->coord->y);
+		draw(\
+			enemy->coord->x / BLOCK_PIXEL, \
+			enemy->coord->y / BLOCK_PIXEL, \
+			get_enemy_sprite(enemy, game), \
+			game \
+		);
 		lst = lst->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:49:15 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:33:55 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:23:31 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	player_sprite_pos(t_game *game)
 	return (-1);
 }
 
-int	*get_player_sprite(t_game *game)
+t_buffer	*get_player_sprite(t_game *game)
 {
 	static int	arr_pos;
 	static int	anim_inter;
@@ -35,7 +35,7 @@ int	*get_player_sprite(t_game *game)
 	}
 	else
 		anim_inter++;
-	return (game->sprites->player[arr_pos]);
+	return (&game->sprites->player[arr_pos]);
 }
 
 void	ft_die(t_game *game)
@@ -50,7 +50,7 @@ void	ft_die(t_game *game)
 		if (enemy->coord->x == game->player->coord->x
 			&& enemy->coord->y == game->player->coord->y)
 		{
-			game->end_game = -1;
+			end_game(game);
 		}
 		lst = lst->next;
 	}
@@ -60,6 +60,10 @@ void	draw_player(t_game *game)
 {
 	ft_die(game);
 	draw_count_steps(game);
-	mlx_put_image_to_window(game->mlx, game->window, get_player_sprite(game),
-		game->player->coord->x, game->player->coord->y);
+	draw(\
+		game->player->coord->x / BLOCK_PIXEL, \
+		game->player->coord->y / BLOCK_PIXEL, \
+		get_player_sprite(game), \
+		game \
+	);
 }

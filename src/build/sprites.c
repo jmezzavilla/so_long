@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:46:51 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:27:29 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:22:24 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,26 @@ static char	*path_sprite(char *sprite_name, int nb)
 
 static void	load_sprite(t_game *game, char *sprite_type, char *path, int pos)
 {
-	int	pxl;
+	t_buffer*	target;
 
 	if (ft_strcmp(sprite_type, PLAYER) == 0)
-		game->sprites->player[pos] = mlx_xpm_file_to_image(game->mlx, path,
-				&pxl, &pxl);
+		target = &game->sprites->player[pos];
 	else if (ft_strcmp(sprite_type, ENEMY) == 0)
-		game->sprites->enemy[pos] = mlx_xpm_file_to_image(game->mlx, path, &pxl,
-				&pxl);
+		target = &game->sprites->enemy[pos];
 	else if (ft_strcmp(sprite_type, COLLECTIBLE) == 0)
-		game->sprites->collectible[pos] = mlx_xpm_file_to_image(game->mlx, path,
-				&pxl, &pxl);
+		target = &game->sprites->collectible[pos];
 	else if (ft_strcmp(sprite_type, TILES) == 0)
-		game->sprites->tiles[pos] = mlx_xpm_file_to_image(game->mlx, path, &pxl,
-				&pxl);
+		target = &game->sprites->tiles[pos];
 	else if (ft_strcmp(sprite_type, EXIT) == 0)
-		game->sprites->exit[pos] = mlx_xpm_file_to_image(game->mlx, path, &pxl,
-				&pxl);
-	else if (ft_strcmp(sprite_type, GAMEOVER) == 0)
-		game->sprites->game_over[pos] = mlx_xpm_file_to_image(game->mlx, path,
-				&pxl, &pxl);
+		target = &game->sprites->exit[pos];
+	else
+		return ;
+
+	target->img = mlx_xpm_file_to_image(game->mlx, path,
+				&target->width, &target->height);
+	target->addr = mlx_get_data_addr(target->img, &target->bits_per_pixel, &target->line_length,
+								&target->endian);
+	
 }
 
 static void	create_sprites(t_game *game, char *sprite_type, int nbr_sprites)
@@ -87,5 +87,4 @@ void	build_sprites(t_game *game)
 	create_sprites(game, COLLECTIBLE, TOTAL_SPRITE_COLLECTIBLE);
 	create_sprites(game, ENEMY, TOTAL_SPRITE_ENEMY);
 	create_sprites(game, TILES, TOTAL_SPRITE_TILES);
-	create_sprites(game, GAMEOVER, TOTAL_SPRITE_GAMEOVER);
 }

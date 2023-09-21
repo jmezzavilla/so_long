@@ -6,23 +6,23 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:49:24 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 18:59:15 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:25:41 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	destroy_images(t_game *game, void **sprites, int total_sprite)
+void	destroy_images(t_game *game, t_buffer *sprites, int total_sprite)
 {
 	int	i;
 
 	i = 0;
 	while (i < total_sprite)
 	{
-		if (sprites[i])
+		if (sprites[i].img)
 		{
-			mlx_destroy_image(game->mlx, sprites[i]);
-			sprites[i] = NULL;
+			mlx_destroy_image(game->mlx, sprites[i].img);
+			sprites[i].img = NULL;
 		}
 		i++;
 	}
@@ -65,7 +65,6 @@ void	destroy_game(t_game *game)
 	destroy_images(game, game->sprites->collectible, TOTAL_SPRITE_COLLECTIBLE);
 	destroy_images(game, game->sprites->tiles, TOTAL_SPRITE_TILES);
 	destroy_images(game, game->sprites->exit, TOTAL_SPRITE_EXIT);
-	destroy_images(game, game->sprites->game_over, TOTAL_SPRITE_GAMEOVER);
 	free(game->sprites);
 	game->sprites = NULL;
 	ft_lstclear(&game->map->lst_map, clean_lst);

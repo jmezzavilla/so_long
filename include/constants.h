@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:06:54 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/19 18:59:46 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:21:57 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define ENEMY "enemy"
 # define TILES "tiles"
 # define EXIT "exit"
-# define GAMEOVER "gameover"
 
 # define BLOCK_PIXEL 55
 # define XPM ".xpm"
@@ -36,14 +35,12 @@
 # define ARROW_KEY_UP 65362
 # define ARROW_KEY_DOWN 65364
 # define KEY_ESC 65307
-# define KEY_ENTER 65293
 
 # define TOTAL_SPRITE_PLAYER 46
 # define TOTAL_SPRITE_ENEMY 33
 # define TOTAL_SPRITE_TILES 3
 # define TOTAL_SPRITE_COLLECTIBLE 12
 # define TOTAL_SPRITE_EXIT 4
-# define TOTAL_SPRITE_GAMEOVER 3
 
 # define PSL_START 35
 # define PSL_START_RUN 41
