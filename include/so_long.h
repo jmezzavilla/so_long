@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 16:53:40 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 20:22:36 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:06:53 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_coord
 typedef struct s_map
 {
 	char		**matrix;
-	char		**matrix_map;
 	t_list		*lst_map;
 	int			height;
 	int			width;
@@ -39,19 +38,27 @@ typedef struct s_map
 	char		*map_path;
 }				t_map;
 
+typedef struct s_floodfill
+{
+	char		**map;
+	int			total_collectibles;
+	int			nbr_exit;
+}				t_floodfill;
+
 typedef struct s_exit
 {
 	t_coord		*coord;
 }				t_exit;
 
-typedef struct	s_buffer {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
+typedef struct s_buffer
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
 }				t_buffer;
 
 typedef struct s_sprites
@@ -88,11 +95,10 @@ typedef struct s_player
 	int			steps;
 }				t_player;
 
-
-
 typedef struct s_game
 {
 	t_map		*map;
+	t_floodfill	*flood_fill;
 	t_list		*enemies;
 	t_list		*collectibles;
 	t_player	*player;
@@ -104,8 +110,6 @@ typedef struct s_game
 	int			exit_animation;
 	int			exit_animation_pos;
 	int			total_collectibles;
-	int			end_game;
-	int			arrow_position;
 	int			nbr_player;
 	int			nbr_exit;
 }				t_game;
@@ -123,7 +127,7 @@ void			valid_map(t_game *game);
 
 void			register_hook(t_game *game);
 
-void			exit_game(t_game *game);
+void			finish_game(t_game *game);
 void			get_item(t_game *game);
 void			move_player(int keycode, t_game *game);
 void			move_enemy(t_game *game);
@@ -135,7 +139,6 @@ void			draw_wall(t_game *game);
 void			draw_enemy(t_game *game);
 void			draw_collectible(t_game *game);
 void			draw_exit(t_game *game);
-void			draw_count_steps(t_game *game);
 
 void			draw(int x, int y, t_buffer *sprite, t_game *game);
 
@@ -149,10 +152,8 @@ int				is_right_wall(t_game *game, t_coord *coord);
 
 void			end_game(t_game *game);
 void			destroy_game(t_game *game);
-void			select_option(t_game *game);
-void			put_arrows(t_game *game, int direction);
-void			draw_map_game_over(t_game *game);
 
 void			error_msg(const char *message);
+void			msg(const char *message);
 
 #endif

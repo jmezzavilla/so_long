@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:27:09 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:26:50 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 21:45:18 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	read_map(t_game *game)
 	char	*line;
 
 	line = NULL;
+	game->map->width = -1;
 	while (1)
 	{
 		line = get_next_line(game->map->fd);
@@ -42,9 +43,13 @@ void	convert_lst_to_char(t_game *game)
 	game->map->matrix = ft_calloc(game->map->height + 1, sizeof(char *));
 	if (!game->map->matrix)
 		error_msg("Error: memory game->map->matrix[][]");
+	game->flood_fill->map = ft_calloc(sizeof(char *), game->map->height);
+	if (!game->flood_fill->map)
+		error_msg("Error: memory game->flood_fill->map[][]");
 	while (lst)
 	{
 		game->map->matrix[i] = ft_strdup(lst->content);
+		game->flood_fill->map[i] = ft_strdup(lst->content);
 		if (!game->map->matrix[i])
 			exit(EXIT_FAILURE);
 		i++;
@@ -80,7 +85,9 @@ void	build_map(char *path, t_game *game)
 	game->map = ft_calloc(sizeof(t_map), 1);
 	if (!game->map)
 		error_msg("Error: memory game->map");
-	game->map->width = -1;
+	game->flood_fill = ft_calloc(sizeof(t_floodfill), 1);
+	if (!game->flood_fill)
+		error_msg("Error: memory game->flood_fill");
 	game->map->map_path = path;
 	game->map->fd = fd;
 	read_map(game);

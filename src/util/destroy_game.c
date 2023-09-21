@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:49:24 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 20:25:41 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 22:54:03 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	clean_lst(void *item)
 
 void	clean_enemy(void *item)
 {
-	t_enemy	*enemey;
+	t_enemy	*enemy;
 
-	enemey = (t_enemy *)item;
-	free(enemey->coord);
-	free(enemey->last_coord);
-	enemey->coord = NULL;
-	enemey->last_coord = NULL;
-	free(enemey);
-	enemey = NULL;
+	enemy = (t_enemy *)item;
+	free(enemy->coord);
+	free(enemy->last_coord);
+	enemy->coord = NULL;
+	enemy->last_coord = NULL;
+	free(enemy);
+	enemy = NULL;
 }
 
 void	clean_collectible(void *item)

@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:06:54 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 20:21:57 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:54:03 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 # define TOTAL_SPRITE_PLAYER 46
 # define TOTAL_SPRITE_ENEMY 33
-# define TOTAL_SPRITE_TILES 3
+# define TOTAL_SPRITE_TILES 2
 # define TOTAL_SPRITE_COLLECTIBLE 12
 # define TOTAL_SPRITE_EXIT 4
 
@@ -63,11 +63,5 @@
 
 # define ENEMY_START 0
 # define ENEMY_END 32
-
-# define COLOR_RED "\x1b[31m"
-# define COLOR_GREEN "\x1b[32m"
-# define COLOR_YELLOW "\x1b[33m"
-# define COLOR_BLUE "\x1b[34m"
-# define COLOR_RESET "\x1b[0m"
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:48:59 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 20:23:45 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:07:48 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	exit_game(t_game *game)
+void	finish_game(t_game *game)
 {
 	int	y;
 	int	x;
@@ -21,6 +21,7 @@ void	exit_game(t_game *game)
 	x = game->player->coord->x / BLOCK_PIXEL;
 	if (game->total_collectibles == 0 && game->map->matrix[y][x] == 'E')
 	{
+		msg("!!! You win !!!");
 		end_game(game);
 	}
 }

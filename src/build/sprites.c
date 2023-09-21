@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:46:51 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 20:22:24 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:02:58 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*path_sprite(char *sprite_name, int nb)
 
 static void	load_sprite(t_game *game, char *sprite_type, char *path, int pos)
 {
-	t_buffer*	target;
+	t_buffer	*target;
 
 	if (ft_strcmp(sprite_type, PLAYER) == 0)
 		target = &game->sprites->player[pos];
@@ -48,12 +48,10 @@ static void	load_sprite(t_game *game, char *sprite_type, char *path, int pos)
 		target = &game->sprites->exit[pos];
 	else
 		return ;
-
-	target->img = mlx_xpm_file_to_image(game->mlx, path,
-				&target->width, &target->height);
-	target->addr = mlx_get_data_addr(target->img, &target->bits_per_pixel, &target->line_length,
-								&target->endian);
-	
+	target->img = mlx_xpm_file_to_image(game->mlx, path, &target->width,
+			&target->height);
+	target->addr = mlx_get_data_addr(target->img, &target->bits_per_pixel,
+			&target->line_length, &target->endian);
 }
 
 static void	create_sprites(t_game *game, char *sprite_type, int nbr_sprites)

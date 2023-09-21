@@ -6,16 +6,11 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:37:06 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 22:55:23 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:02:32 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	valid_map_format(t_map *map)
-{
-	return (map->height != map->width);
-}
 
 int	valid_map_character(t_map *map)
 {
@@ -60,39 +55,54 @@ int	valid_map_wall(t_map *map)
 	return (1);
 }
 
-int	valid_collectible_blocked(t_map *map)
+void	fill(int y, int x, t_game *game, char to_fill)
 {
-	int	x;
-	int	y;
+	if (y < 0 || y >= game->map->height || x < 0 || x >= game->map->width
+		|| game->flood_fill->map[y][x] == to_fill)
+		return ;
+	if (game->flood_fill->map[y][x] == 'C')
+		game->flood_fill->total_collectibles++;
+	if (game->flood_fill->map[y][x] == 'E')
+		game->flood_fill->nbr_exit++;
+	if (game->flood_fill->map[y][x] == '1')
+		return ;
+	game->flood_fill->map[y][x] = to_fill;
+	fill(y + 1, x, game, to_fill);
+	fill(y - 1, x, game, to_fill);
+	fill(y, x + 1, game, to_fill);
+	fill(y, x - 1, game, to_fill);
+}
 
-	x = 0;
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			if (map->matrix[y][x] == 'C' && map->matrix[y][x + 1] == '1'
-				&& map->matrix[y][x - 1] == '1' && map->matrix[y - 1][x] == '1'
-				&& map->matrix[y + 1][x] == '1')
-				return (0);
-			x++;
-		}
-		y++;
-	}
+int	flood_fill(t_game *game)
+{
+	int	player_pos_x;
+	int	player_pos_y;
+
+	player_pos_x = game->player->coord->x / BLOCK_PIXEL;
+	player_pos_y = game->player->coord->y / BLOCK_PIXEL;
+	game->flood_fill->total_collectibles = 0;
+	game->flood_fill->nbr_exit = 0;
+	fill(player_pos_y,
+		player_pos_x,
+		game,
+		'A');
+	if (game->total_collectibles != game->flood_fill->total_collectibles
+		|| game->nbr_exit != game->flood_fill->nbr_exit)
+		return (0);
 	return (1);
 }
 
 void	valid_map(t_game *game)
 {
-	if (!valid_map_format(game->map))
-		error_msg("Error: Error map format");
+	if (game->map->height == game->map->width)
+		error_msg("Error: map format");
 	if (!valid_map_character(game->map))
-		error_msg("Error: Error map character");
+		error_msg("Error: map character");
 	if (!valid_map_wall(game->map))
-		error_msg("Error: Error map wall");
-	if (!(game->nbr_exit == 1 && game->nbr_player == 1 && game->total_collectibles > 0))
-		error_msg("Error: Error number of components");
-	if (!valid_collectible_blocked(game->map))
-		error_msg("Error: Error collectible blocked");
+		error_msg("Error: map wall");
+	if (!(game->nbr_exit == 1 && game->nbr_player == 1
+			&& game->total_collectibles > 0))
+		error_msg("Error: number of components");
+	if (!flood_fill(game))
+		error_msg("Error: map not suported");
 }

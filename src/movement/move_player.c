@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:54:01 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:38:48 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:05:57 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	move_player(int keycode, t_game *game)
 	else if (keycode == LETTER_KEY_DOWN || keycode == ARROW_KEY_DOWN)
 		move_down_player(game);
 	get_item(game);
-	exit_game(game);
+	finish_game(game);
 }

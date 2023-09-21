@@ -6,32 +6,26 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:47:31 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:36:48 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/21 21:00:04 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	draw_move_enemy(t_enemy *enemy)
-{
-	if (enemy->animation_pos == ENEMY_END)
-	{
-		enemy->animation_pos = ENEMY_START;
-	}
-	else
-		enemy->animation_pos += 1;
-	return (enemy->animation_pos);
-}
-
 t_buffer	*get_enemy_sprite(t_enemy *enemy, t_game *game)
 {
 	if (enemy->animation == 5)
 	{
+		if (enemy->animation_pos == ENEMY_END)
+		{
+			enemy->animation_pos = ENEMY_START;
+		}
+		else
+			enemy->animation_pos += 1;
 		enemy->animation = 0;
-		draw_move_enemy(enemy);
 	}
 	else
-		enemy->animation += 1;
+		enemy->animation++;
 	return (&game->sprites->enemy[enemy->animation_pos]);
 }
 
@@ -44,12 +38,11 @@ void	draw_enemy(t_game *game)
 	while (lst)
 	{
 		enemy = (t_enemy *)lst->content;
-		draw(\
-			enemy->coord->x / BLOCK_PIXEL, \
-			enemy->coord->y / BLOCK_PIXEL, \
-			get_enemy_sprite(enemy, game), \
-			game \
-		);
+		draw(
+			enemy->coord->x / BLOCK_PIXEL,
+			enemy->coord->y / BLOCK_PIXEL,
+			get_enemy_sprite(enemy, game),
+			game);
 		lst = lst->next;
 	}
 }
