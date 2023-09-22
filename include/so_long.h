@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 16:53:40 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 23:08:55 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:21:44 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ typedef struct s_map
 	t_list		*lst_map;
 	int			height;
 	int			width;
-	int			fd;
-	char		*map_path;
 }				t_map;
 
 typedef struct s_floodfill
