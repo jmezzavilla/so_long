@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:27:09 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:11:05 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 21:45:53 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ void	read_map(t_game *game)
 	char	*line;
 
 	line = NULL;
-	game->map->width = -1;
+	game->map->width = 0;
 	while (1)
 	{
 		line = get_next_line(game->map->fd);
 		if (!line)
 			break ;
-		if (game->map->width == -1)
-			game->map->width = ft_strlen(line) - 1;
+		if (game->map->width == 0)
+			game->map->width = ft_strlen_nl(line);
+		else if(game->map->width != (int)ft_strlen_nl(line))
+			error_msg("Error: Invalid map, wrong size", NULL);
 		if (game->map->lst_map == NULL)
 			game->map->lst_map = ft_lstnew(line);
 		else
@@ -42,10 +44,10 @@ void	convert_lst_to_char(t_game *game)
 	game->map->height = ft_lstsize(game->map->lst_map);
 	game->map->matrix = ft_calloc(game->map->height + 1, sizeof(char *));
 	if (!game->map->matrix)
-		error_msg("Error: memory game->map->matrix[][]", game);
+		error_msg("Error: Memory game->map->matrix[][]", game);
 	game->flood_fill->map = ft_calloc(sizeof(char *), game->map->height);
 	if (!game->flood_fill->map)
-		error_msg("Error: memory game->flood_fill->map[][]", game);
+		error_msg("Error: Memory game->flood_fill->map[][]", game);
 	while (lst)
 	{
 		game->map->matrix[i] = ft_strdup(lst->content);
@@ -67,7 +69,7 @@ void	check_map_extension(char *path)
 		error_msg("Error: Map extension invalid", NULL);
 		exit(EXIT_FAILURE);
 	}
-	if (ft_strcmp(extension, ".ber") != 0)
+	if (ft_strcmp(extension, BER) != 0)
 	{
 		error_msg("Error: Map extension invalid", NULL);
 		exit(EXIT_FAILURE);

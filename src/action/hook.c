@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:17:28 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:19:19 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:15:46 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,17 @@ int	keypress(int keycode, t_game *game)
 	return (0);
 }
 
+int closing_game(t_game *game)
+{
+	ft_printf("Exit %s\n", WINDOW_TITLE);
+	end_game(game);
+	return(0);
+}
+
 void	register_hook(t_game *game)
 {
 	mlx_hook(game->window, KeyPress, KeyPressMask, keypress, game);
-	mlx_hook(game->window, 17, 0, (void *) end_game, game);
+	mlx_hook(game->window, 17, 0, closing_game, game);
 	mlx_loop_hook(game->mlx, loop, game);
 	mlx_loop(game->mlx);
 }

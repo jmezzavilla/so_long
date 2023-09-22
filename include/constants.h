@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:06:54 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 20:54:03 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 21:42:56 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 
 # define BLOCK_PIXEL 55
 # define XPM ".xpm"
+# define BER ".ber"
 
-# define WINDOW_TITLE "so_long"
+# define WINDOW_TITLE "GOT"
 
 # define LETTER_KEY_LEFT 97
 # define LETTER_KEY_RIGHT 100

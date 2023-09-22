@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:07:11 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 17:45:49 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:06:49 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	build_exit(t_game *game)
 {
 	game->exit = ft_calloc(sizeof(t_exit), 1);
 	if (game->exit == NULL)
-		error_msg("Error: memory game->exit", game);
+		error_msg("Error: Memory game->exit", game);
 	game->exit->coord = ft_calloc(sizeof(t_coord), 1);
 	if (game->exit->coord == NULL)
-		error_msg("Error: memory game->exit->coord", game);
+		error_msg("Error: Memory game->exit->coord", game);
 	build_coord_exit(game);
 }

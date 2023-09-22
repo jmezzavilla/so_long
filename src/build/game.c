@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 20:52:25 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 18:27:30 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:46:57 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	build_game(t_game *game)
 	game->total_collectibles = 0;
 	game->nbr_player = 0;
 	game->nbr_exit = 0;
+	game->mlx = NULL;
 }
 
 void	build(char *map, t_game *game)

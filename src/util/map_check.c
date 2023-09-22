@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:37:06 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:23:30 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:05:51 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	valid_map_character(t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-			if (!ft_strchr("PCEM01", map->matrix[y][x]))
+			if (!ft_strchr("PCEM01\n", map->matrix[y][x]))
 				return (0);
 			x++;
 		}
@@ -94,14 +94,14 @@ int	flood_fill(t_game *game)
 void	valid_map(t_game *game)
 {
 	if (game->map->height == game->map->width)
-		error_msg("Error: map format", game);
+		error_msg("Error: Invalid format, wrong size", game);
 	if (!valid_map_character(game->map))
-		error_msg("Error: map character", game);
+		error_msg("Error: Invalid number of characters", game);
 	if (!valid_map_wall(game->map))
-		error_msg("Error: map wall", game);
+		error_msg("Error: Missing wall", game);
 	if (!(game->nbr_exit == 1 && game->nbr_player == 1
 			&& game->total_collectibles > 0))
-		error_msg("Error: number of components", game);
+		error_msg("Error: Invalid number of Players/Exit/Collectibles", game);
 	if (!flood_fill(game))
-		error_msg("Error: map not suported", game);
+		error_msg("Error: Map not supported", game);
 }
