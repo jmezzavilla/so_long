@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:17:28 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 20:15:46 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:02:10 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	loop(t_game *game)
 	draw_collectible(game);
 	draw_exit(game);
 	draw_enemy(game);
-	mlx_put_image_to_window(game->mlx, game->window, game->image_buffer.img, 0,0);
+	mlx_put_image_to_window(game->mlx, game->window, game->image_buffer.img, 0,
+		0);
 	draw_player(game);
 	return (EXIT_SUCCESS);
 }
@@ -37,11 +38,11 @@ int	keypress(int keycode, t_game *game)
 	return (0);
 }
 
-int closing_game(t_game *game)
+int	closing_game(t_game *game)
 {
 	ft_printf("Exit %s\n", WINDOW_TITLE);
 	end_game(game);
-	return(0);
+	return (0);
 }
 
 void	register_hook(t_game *game)

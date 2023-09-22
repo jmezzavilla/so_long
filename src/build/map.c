@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:27:09 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 21:53:44 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:00:49 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	read_map(t_game *game)
 
 	line = NULL;
 	game->map->width = 0;
+	game->map->fd = open(game->map->map_path, O_RDONLY);
+	if (game->map->fd == -1)
+		error_msg("Error: Map not found", game);
 	while (1)
 	{
 		line = get_next_line(game->map->fd);
@@ -25,13 +28,14 @@ void	read_map(t_game *game)
 			break ;
 		if (game->map->width == 0)
 			game->map->width = ft_strlen_nl(line);
-		else if(game->map->width != (int)ft_strlen_nl(line))
+		else if (game->map->width != (int)ft_strlen_nl(line))
 			error_msg("Error: Invalid map, wrong size", NULL);
 		if (game->map->lst_map == NULL)
 			game->map->lst_map = ft_lstnew(line);
 		else
 			ft_lstadd_back(&game->map->lst_map, ft_lstnew(line));
 	}
+	close(game->map->fd);
 }
 
 void	convert_lst_to_char(t_game *game)
@@ -78,21 +82,14 @@ void	check_map_extension(char *path)
 
 void	build_map(char *path, t_game *game)
 {
-	int	fd;
-
 	check_map_extension(path);
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		error_msg("Error: Map not found", game);
 	game->map = ft_calloc(sizeof(t_map), 1);
 	if (!game->map)
 		error_msg("Error: memory game->map", game);
+	game->map->map_path = path;
+	read_map(game);
 	game->flood_fill = ft_calloc(sizeof(t_floodfill), 1);
 	if (!game->flood_fill)
 		error_msg("Error: memory game->flood_fill", game);
-	game->map->map_path = path;
-	game->map->fd = fd;
-	read_map(game);
-	close(fd);
 	convert_lst_to_char(game);
 }

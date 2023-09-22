@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:49:24 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:11:46 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:01:37 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@ void	clean_collectible(void *item)
 }
 
 void	destroy_game(t_game *game)
-{	
+{
 	ft_lstclear(&game->map->lst_map, clean_lst);
-	ft_cleanup_split(game->map->matrix,	ft_strlen_matrix(game->map->matrix));
+	ft_cleanup_split(game->map->matrix, ft_strlen_matrix(game->map->matrix));
 	ft_lstclear(&game->enemies, clean_enemy);
 	ft_lstclear(&game->collectibles, clean_collectible);
-	
-	if(game->mlx != NULL)
+	if (game->mlx != NULL)
 	{
 		mlx_destroy_display(game->mlx);
 		mlx_destroy_window(game->mlx, game->window);
@@ -57,9 +56,10 @@ void	destroy_game(t_game *game)
 		free(game->mlx);
 	}
 }
-void end_game(t_game *game)
+
+void	end_game(t_game *game)
 {
-	if(game)
+	if (game)
 		destroy_game(game);
 	exit(EXIT_SUCCESS);
 }

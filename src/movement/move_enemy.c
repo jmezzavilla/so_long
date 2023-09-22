@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:48:06 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:36:12 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:01:58 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	move_right_enemy(t_game *game, t_enemy *enemy)
 {
-	if (enemy->coord->x < (game->map->width * BLOCK_PIXEL) 
+	if (enemy->coord->x < (game->map->width * BLOCK_PIXEL)
 		&& !is_right_wall(game, enemy->coord))
 	{
 		enemy->last_coord->x = enemy->coord->x;
@@ -42,7 +42,7 @@ void	move_up_enemy(t_game *game, t_enemy *enemy)
 
 void	move_down_enemy(t_game *game, t_enemy *enemy)
 {
-	if (enemy->coord->y < (game->map->height * BLOCK_PIXEL) 
+	if (enemy->coord->y < (game->map->height * BLOCK_PIXEL)
 		&& !is_down_wall(game, enemy->coord))
 	{
 		enemy->last_coord->y = enemy->coord->y;
