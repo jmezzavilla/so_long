@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 16:53:40 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 22:43:22 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:08:55 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,14 @@ int				is_down_wall(t_game *game, t_coord *coord);
 int				is_up_wall(t_game *game, t_coord *coord);
 int				is_left_wall(t_game *game, t_coord *coord);
 int				is_right_wall(t_game *game, t_coord *coord);
+void			move_down(t_game *game, t_coord *coord, t_coord *last_coord,
+					int is_player);
+void			move_up(t_game *game, t_coord *coord, t_coord *last_coord,
+					int is_player);
+void			move_left(t_game *game, t_coord *coord, t_coord *last_coord,
+					int is_player);
+void			move_right(t_game *game, t_coord *coord, t_coord *last_coord,
+					int is_player);
 
 void			end_game(t_game *game);
 void			destroy_game(t_game *game);

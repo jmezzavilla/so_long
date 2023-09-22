@@ -6,7 +6,7 @@
 #    By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 00:18:43 by jealves-          #+#    #+#              #
-#    Updated: 2023/09/22 22:40:01 by jealves-         ###   ########.fr        #
+#    Updated: 2023/09/22 23:04:24 by jealves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,13 @@ SRC =		src/action/hook.c\
 			src/draw/draw_exit.c\
 			src/draw/draw_player_movement.c\
 			src/draw/draw_player.c\
-			src/draw/draw_wall.c\
-			src/movement/move_player.c\
-			src/movement/move_enemy.c\
-			src/util/colision.c\
-			src/util/draw_pixels.c\
+			src/draw/draw_pixels.c\
 			src/util/destroy_game.c\
 			src/util/msg.c\
 			src/util/map_check.c\
 			src/so_long.c\
+			src/movement/direction.c\
+			src/movement/colision.c\
 
 PROJECT = <$(GREEN)$(NAME)$(RESET)>
 			

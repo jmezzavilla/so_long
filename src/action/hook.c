@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:17:28 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 22:02:10 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:08:19 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ int	loop(t_game *game)
 {
 	move_enemy(game);
 	draw_background(game);
-	draw_wall(game);
 	draw_collectible(game);
 	draw_exit(game);
 	draw_enemy(game);
+	draw_player(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->image_buffer.img, 0,
 		0);
-	draw_player(game);
 	return (EXIT_SUCCESS);
 }
 
@@ -34,7 +33,18 @@ int	keypress(int keycode, t_game *game)
 		end_game(game);
 	}
 	else
-		move_player(keycode, game);
+	{
+		if (keycode == LETTER_KEY_LEFT || keycode == ARROW_KEY_LEFT)
+			move_left(game, game->player->coord, game->player->last_coord, 1);
+		else if (keycode == LETTER_KEY_RIGHT || keycode == ARROW_KEY_RIGHT)
+			move_right(game, game->player->coord, game->player->last_coord, 1);
+		else if (keycode == LETTER_KEY_UP || keycode == ARROW_KEY_UP)
+			move_up(game, game->player->coord, game->player->last_coord, 1);
+		else if (keycode == LETTER_KEY_DOWN || keycode == ARROW_KEY_DOWN)
+			move_down(game, game->player->coord, game->player->last_coord, 1);
+		get_item(game);
+		finish_game(game);
+	}
 	return (0);
 }
 
