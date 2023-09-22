@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:27:09 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 21:45:53 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 21:53:44 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	convert_lst_to_char(t_game *game)
 	{
 		game->map->matrix[i] = ft_strdup(lst->content);
 		game->flood_fill->map[i] = ft_strdup(lst->content);
-		if (!game->map->matrix[i])
+		if (!game->map->matrix[i] || !game->flood_fill->map[i])
 			exit(EXIT_FAILURE);
 		i++;
 		lst = lst->next;
