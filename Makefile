@@ -6,7 +6,7 @@
 #    By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 00:18:43 by jealves-          #+#    #+#              #
-#    Updated: 2023/09/22 17:42:07 by jealves-         ###   ########.fr        #
+#    Updated: 2023/09/22 19:01:50 by jealves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRC =		src/action/hook.c\
 			src/util/colision.c\
 			src/util/draw_pixels.c\
 			src/util/destroy_game.c\
-			src/util/end_game.c\
 			src/util/msg.c\
 			src/util/map_check.c\
 			src/so_long.c\

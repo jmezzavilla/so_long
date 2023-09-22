@@ -6,27 +6,11 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:49:24 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 17:50:57 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:11:46 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	destroy_images(t_game *game, t_buffer *sprites, int total_sprite)
-{
-	int	i;
-
-	i = 0;
-	while (i < total_sprite)
-	{
-		if (sprites[i].img)
-		{
-			mlx_destroy_image(game->mlx, sprites[i].img);
-			sprites[i].img = NULL;
-		}
-		i++;
-	}
-}
 
 void	clean_lst(void *item)
 {
@@ -59,27 +43,23 @@ void	clean_collectible(void *item)
 }
 
 void	destroy_game(t_game *game)
-{
-	/*destroy_images(game, game->sprites->player, TOTAL_SPRITE_PLAYER);
-	destroy_images(game, game->sprites->enemy, TOTAL_SPRITE_ENEMY);
-	destroy_images(game, game->sprites->collectible, TOTAL_SPRITE_COLLECTIBLE);
-	destroy_images(game, game->sprites->tiles, TOTAL_SPRITE_TILES);
-	destroy_images(game, game->sprites->exit, TOTAL_SPRITE_EXIT);*/
-	if(game->mlx)
-		mlx_destroy_display(game->mlx);
-	free(game->sprites);
-	game->sprites = NULL;
+{	
 	ft_lstclear(&game->map->lst_map, clean_lst);
-	game->map->matrix = ft_cleanup_split(game->map->matrix,
-			ft_strlen_matrix(game->map->matrix));
-	free(game->map);
-	game->map = NULL;
+	ft_cleanup_split(game->map->matrix,	ft_strlen_matrix(game->map->matrix));
 	ft_lstclear(&game->enemies, clean_enemy);
 	ft_lstclear(&game->collectibles, clean_collectible);
-	free(game->player->last_coord);
-	game->player->last_coord = NULL;
-	free(game->player->coord);
-	game->player->coord = NULL;
-	free(game->player);
-	game->player = NULL;
+	
+	if(game->mlx != NULL)
+	{
+		mlx_destroy_display(game->mlx);
+		mlx_destroy_window(game->mlx, game->window);
+		mlx_loop_end(game->mlx);
+		free(game->mlx);
+	}
+}
+void end_game(t_game *game)
+{
+	if(game)
+		destroy_game(game);
+	exit(EXIT_SUCCESS);
 }
