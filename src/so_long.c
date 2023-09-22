@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 00:02:37 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 20:45:56 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:45:20 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	main(int ac, char **av)
 	if (ac == 2)
 		return (so_long(av[1]));
 	else
-		error_msg("Error: Invalid Number of Arguments");
+		error_msg("Error: Invalid Number of Arguments", NULL);
 }

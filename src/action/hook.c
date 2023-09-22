@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:17:28 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 23:11:53 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:39:08 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	keypress(int keycode, t_game *game)
 void	register_hook(t_game *game)
 {
 	mlx_hook(game->window, KeyPress, KeyPressMask, keypress, game);
+	mlx_hook(game->window, 17, 0, (void *) end_game, game);
 	mlx_loop_hook(game->mlx, loop, game);
 	mlx_loop(game->mlx);
 }

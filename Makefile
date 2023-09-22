@@ -6,7 +6,7 @@
 #    By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 00:18:43 by jealves-          #+#    #+#              #
-#    Updated: 2023/09/21 22:41:21 by jealves-         ###   ########.fr        #
+#    Updated: 2023/09/22 17:42:07 by jealves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ DIR_LIBFT = libft
 INCLUDE_LIB = $(DIR_LIBFT)/include
 LIB = $(DIR_LIBFT)/libft.a
 
-CFLAGS = -g -Wall -I $(INCLUDES) -I $(INCLUDE_LIB) -I $(MLX_DIR) -Wextra -Werror
+CFLAGS = -g -Wall -I $(INCLUDES) -I $(INCLUDE_LIB) -I $(MLX_DIR) -Wextra -Werror -fsanitize=address
 RM= rm -rf
 
 OBJ = $(patsubst %.c,%.o,$(SRC))

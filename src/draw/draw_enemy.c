@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:47:31 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 21:00:04 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:40:22 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_buffer	*get_enemy_sprite(t_enemy *enemy, t_game *game)
 {
-	if (enemy->animation == 5)
+	if (enemy->animation == 50)
 	{
 		if (enemy->animation_pos == ENEMY_END)
 		{

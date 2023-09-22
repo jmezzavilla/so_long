@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:49:24 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 22:54:03 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:50:57 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ void	clean_collectible(void *item)
 
 void	destroy_game(t_game *game)
 {
-	destroy_images(game, game->sprites->player, TOTAL_SPRITE_PLAYER);
+	/*destroy_images(game, game->sprites->player, TOTAL_SPRITE_PLAYER);
 	destroy_images(game, game->sprites->enemy, TOTAL_SPRITE_ENEMY);
 	destroy_images(game, game->sprites->collectible, TOTAL_SPRITE_COLLECTIBLE);
 	destroy_images(game, game->sprites->tiles, TOTAL_SPRITE_TILES);
-	destroy_images(game, game->sprites->exit, TOTAL_SPRITE_EXIT);
+	destroy_images(game, game->sprites->exit, TOTAL_SPRITE_EXIT);*/
+	if(game->mlx)
+		mlx_destroy_display(game->mlx);
 	free(game->sprites);
 	game->sprites = NULL;
 	ft_lstclear(&game->map->lst_map, clean_lst);

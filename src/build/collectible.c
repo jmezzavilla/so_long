@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 20:55:50 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:24:30 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:45:30 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	create_collectible(t_game *game, int y, int x)
 
 	collectible = ft_calloc(sizeof(t_collectible), 1);
 	if (collectible == NULL)
-		error_msg("Error: memory collectible");
+		error_msg("Error: memory collectible", game);
 	collectible->coord = ft_calloc(sizeof(t_coord), 1);
 	if (collectible->coord == NULL)
-		error_msg("Error: memory collectible->coord");
+		error_msg("Error: memory collectible->coord", game);
 	collectible->coord->x = x * BLOCK_PIXEL;
 	collectible->coord->y = y * BLOCK_PIXEL;
 	collectible->is_collected = 0;

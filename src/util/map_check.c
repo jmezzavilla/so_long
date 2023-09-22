@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:37:06 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 23:02:32 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:44:51 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,14 @@ int	flood_fill(t_game *game)
 void	valid_map(t_game *game)
 {
 	if (game->map->height == game->map->width)
-		error_msg("Error: map format");
+		error_msg("Error: map format", game);
 	if (!valid_map_character(game->map))
-		error_msg("Error: map character");
+		error_msg("Error: map character", game);
 	if (!valid_map_wall(game->map))
-		error_msg("Error: map wall");
+		error_msg("Error: map wall", game);
 	if (!(game->nbr_exit == 1 && game->nbr_player == 1
 			&& game->total_collectibles > 0))
-		error_msg("Error: number of components");
+		error_msg("Error: number of components", game);
 	if (!flood_fill(game))
-		error_msg("Error: map not suported");
+		error_msg("Error: map not suported", game);
 }

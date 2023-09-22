@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 20:56:05 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:32:24 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:47:05 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	build_player(t_game *game)
 	game->player = ft_calloc(sizeof(t_player), 1);
 	game->player->coord = ft_calloc(sizeof(t_coord), 1);
 	if (game->player->coord == NULL)
-		error_msg("Error: memory player->coord");
+		error_msg("Error: memory player->coord", game);
 	game->player->last_coord = ft_calloc(sizeof(t_coord), 1);
 	if (game->player->last_coord == NULL)
-		error_msg("Error: memory player->last_coord");
+		error_msg("Error: memory player->last_coord", game);
 	build_coord_player(game);
 }

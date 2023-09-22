@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 16:53:40 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 23:06:53 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:44:21 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ int				is_right_wall(t_game *game, t_coord *coord);
 void			end_game(t_game *game);
 void			destroy_game(t_game *game);
 
-void			error_msg(const char *message);
+void			error_msg(const char *message, t_game *game);
 void			msg(const char *message);
 
 #endif

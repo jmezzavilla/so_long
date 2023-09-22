@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:27:09 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/21 21:45:18 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:46:52 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	convert_lst_to_char(t_game *game)
 	game->map->height = ft_lstsize(game->map->lst_map);
 	game->map->matrix = ft_calloc(game->map->height + 1, sizeof(char *));
 	if (!game->map->matrix)
-		error_msg("Error: memory game->map->matrix[][]");
+		error_msg("Error: memory game->map->matrix[][]", game);
 	game->flood_fill->map = ft_calloc(sizeof(char *), game->map->height);
 	if (!game->flood_fill->map)
-		error_msg("Error: memory game->flood_fill->map[][]");
+		error_msg("Error: memory game->flood_fill->map[][]", game);
 	while (lst)
 	{
 		game->map->matrix[i] = ft_strdup(lst->content);
@@ -57,19 +57,19 @@ void	convert_lst_to_char(t_game *game)
 	}
 }
 
-void	check_map_extension(char *path)
+void	check_map_extension(char *path, t_game *game)
 {
 	char	*extension;
 
 	extension = ft_strchr(path, '.');
 	if (extension == NULL)
 	{
-		error_msg("Error: Map extension invalid");
+		error_msg("Error: Map extension invalid", game);
 		exit(EXIT_FAILURE);
 	}
 	if (ft_strcmp(extension, ".ber") != 0)
 	{
-		error_msg("Error: Map extension invalid");
+		error_msg("Error: Map extension invalid", game);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -78,16 +78,16 @@ void	build_map(char *path, t_game *game)
 {
 	int	fd;
 
-	check_map_extension(path);
+	check_map_extension(path, game);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		error_msg("Error: Map not found");
+		error_msg("Error: Map not found", game);
 	game->map = ft_calloc(sizeof(t_map), 1);
 	if (!game->map)
-		error_msg("Error: memory game->map");
+		error_msg("Error: memory game->map", game);
 	game->flood_fill = ft_calloc(sizeof(t_floodfill), 1);
 	if (!game->flood_fill)
-		error_msg("Error: memory game->flood_fill");
+		error_msg("Error: memory game->flood_fill", game);
 	game->map->map_path = path;
 	game->map->fd = fd;
 	read_map(game);

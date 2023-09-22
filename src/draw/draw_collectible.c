@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 23:27:56 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/20 21:34:05 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:40:30 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_item(t_game *game)
 
 t_buffer	*get_collectible_sprite(t_collectible *collectible, t_game *game)
 {
-	if (collectible->animation_pos == 1)
+	if (collectible->animation_pos == 4)
 	{
 		if (collectible->animation == C_END)
 		{
