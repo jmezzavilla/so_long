@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 16:53:40 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:29:35 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:43:22 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,10 @@ int				so_long(char *map);
 void			build(char *map, t_game *game);
 void			build_map(char *path, t_game *game);
 void			build_sprites(t_game *game);
-void			build_player(t_game *game);
-void			build_enemies(t_game *game);
-void			build_collectibles(t_game *game);
-void			build_exit(t_game *game);
+void			build_player(t_game *game, t_coord *coord);
+void			build_enemy(t_game *game, t_coord *coord);
+void			build_collectible(t_game *game, t_coord *coord);
+void			build_exit(t_game *game, t_coord *coord);
 void			valid_map(t_game *game);
 
 void			register_hook(t_game *game);

@@ -6,7 +6,7 @@
 #    By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 00:18:43 by jealves-          #+#    #+#              #
-#    Updated: 2023/09/22 20:15:41 by jealves-         ###   ########.fr        #
+#    Updated: 2023/09/22 22:40:01 by jealves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,8 @@ NAME = so_long
 
 SRC =		src/action/hook.c\
 			src/build/game.c\
-			src/build/collectible.c\
-			src/build/enemy.c\
+			src/build/characters.c\
 			src/build/map.c\
-			src/build/exit.c\
-			src/build/player.c\
 			src/build/sprites.c\
 			src/draw/draw_background.c\
 			src/draw/draw_collectible.c\

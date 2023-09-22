@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 20:52:25 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:46:57 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:44:33 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,49 @@ void	build_game(t_game *game)
 	game->mlx = NULL;
 }
 
+t_coord	*build_coord(t_game *game, int x, int y)
+{
+	t_coord	*coord;
+
+	coord = ft_calloc(sizeof(t_coord), 1);
+	if (coord == NULL)
+		error_msg("Error: coord", game);
+	coord->x = x * BLOCK_PIXEL;
+	coord->y = y * BLOCK_PIXEL;
+	return (coord);
+}
+
+void	build_characters(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < game->map->height)
+	{
+		x = 0;
+		while (x < game->map->width)
+		{
+			if (game->map->matrix[y][x] == 'P')
+				build_player(game, build_coord(game, x, y));
+			else if (game->map->matrix[y][x] == 'M')
+				build_enemy(game, build_coord(game, x, y));
+			else if (game->map->matrix[y][x] == 'C')
+				build_collectible(game, build_coord(game, x, y));
+			else if (game->map->matrix[y][x] == 'E')
+				build_exit(game, build_coord(game, x, y));
+			x++;
+		}
+		y++;
+	}
+}
+
 void	build(char *map, t_game *game)
 {
 	build_map(map, game);
 	build_game(game);
-	build_collectibles(game);
-	build_player(game);
-	build_enemies(game);
-	build_exit(game);
+	build_characters(game);
 	valid_map(game);
 	build_mlx_itens(game);
 	build_sprites(game);
