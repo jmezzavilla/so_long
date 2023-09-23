@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:37:06 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 20:05:51 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/23 22:16:28 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,10 @@ void	fill(int y, int x, t_game *game, char to_fill)
 
 int	flood_fill(t_game *game)
 {
-	int	player_pos_x;
-	int	player_pos_y;
-
-	player_pos_x = game->player->coord->x / BLOCK_PIXEL;
-	player_pos_y = game->player->coord->y / BLOCK_PIXEL;
 	game->flood_fill->total_collectibles = 0;
 	game->flood_fill->nbr_exit = 0;
-	fill(player_pos_y, player_pos_x, game, 'A');
-	ft_cleanup_split(game->flood_fill->map,
-		ft_strlen_matrix(game->flood_fill->map));
+	fill(game->flood_fill->y, game->flood_fill->x, game, 'A');
+	ft_cleanup_split(game->flood_fill->map, game->map->height);
 	if (game->total_collectibles != game->flood_fill->total_collectibles
 		|| game->nbr_exit != game->flood_fill->nbr_exit)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:49:24 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 22:01:37 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/23 23:55:20 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	clean_enemy(void *item)
 	free(enemy->last_coord);
 	enemy->coord = NULL;
 	enemy->last_coord = NULL;
-	free(enemy);
-	enemy = NULL;
+	if (enemy)
+		free(enemy);
 }
 
 void	clean_collectible(void *item)
@@ -38,14 +38,13 @@ void	clean_collectible(void *item)
 	collectible = (t_collectible *)item;
 	free(collectible->coord);
 	collectible->coord = NULL;
-	free(collectible);
-	collectible = NULL;
+	if (collectible)
+		free(collectible);
 }
 
 void	destroy_game(t_game *game)
 {
 	ft_lstclear(&game->map->lst_map, clean_lst);
-	ft_cleanup_split(game->map->matrix, ft_strlen_matrix(game->map->matrix));
 	ft_lstclear(&game->enemies, clean_enemy);
 	ft_lstclear(&game->collectibles, clean_collectible);
 	if (game->mlx != NULL)

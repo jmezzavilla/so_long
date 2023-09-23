@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/so_long", // Substitua pelo nome do seu executável
-            "args": ["maps/map.ber"],
+            "args": ["maps/valid/map5.ber"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

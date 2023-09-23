@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 16:53:40 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 23:21:44 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/23 23:54:22 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_floodfill
 	char		**map;
 	int			total_collectibles;
 	int			nbr_exit;
+	int			x;
+	int			y;
 }				t_floodfill;
 
 typedef struct s_exit
@@ -82,6 +84,7 @@ typedef struct s_collectible
 	int			animation;
 	int			animation_pos;
 	int			is_collected;
+	int			t;
 	t_coord		*coord;
 }				t_collectible;
 
@@ -117,10 +120,10 @@ int				so_long(char *map);
 void			build(char *map, t_game *game);
 void			build_map(char *path, t_game *game);
 void			build_sprites(t_game *game);
-void			build_player(t_game *game, t_coord *coord);
-void			build_enemy(t_game *game, t_coord *coord);
-void			build_collectible(t_game *game, t_coord *coord);
-void			build_exit(t_game *game, t_coord *coord);
+void			build_player(t_game *game, int x, int y);
+void			build_enemy(t_game *game, int x, int y);
+void			build_collectible(t_game *game, int x, int y);
+void			build_exit(t_game *game, int x, int y);
 void			valid_map(t_game *game);
 
 void			register_hook(t_game *game);
@@ -157,7 +160,6 @@ void			move_right(t_game *game, t_coord *coord, t_coord *last_coord,
 					int is_player);
 
 void			end_game(t_game *game);
-void			destroy_game(t_game *game);
 
 void			error_msg(const char *message, t_game *game);
 void			msg(const char *message);
