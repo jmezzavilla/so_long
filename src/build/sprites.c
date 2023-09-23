@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:46:51 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/22 18:56:57 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:41:37 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ static void	create_sprites(t_game *game, char *sprite_type, int nbr_sprites)
 		path = path_sprite(sprite_type, i);
 		fd_xpm = open(path, O_RDONLY);
 		if (fd_xpm == -1)
-		{
 			error_msg(ft_strjoin("Error to open file: ", path), game);
-		}
 		close(fd_xpm);
 		load_sprite(game, sprite_type, path, i);
 		free(path);
