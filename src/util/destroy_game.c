@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 13:49:24 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/23 23:55:20 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/26 21:41:52 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,6 @@ void	destroy_game(t_game *game)
 	ft_lstclear(&game->map->lst_map, clean_lst);
 	ft_lstclear(&game->enemies, clean_enemy);
 	ft_lstclear(&game->collectibles, clean_collectible);
-	if (game->mlx != NULL)
-	{
-		mlx_destroy_display(game->mlx);
-		mlx_destroy_window(game->mlx, game->window);
-		mlx_loop_end(game->mlx);
-		free(game->mlx);
-	}
 }
 
 void	end_game(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:37:06 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/23 22:16:28 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/26 21:41:45 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	flood_fill(t_game *game)
 	game->flood_fill->total_collectibles = 0;
 	game->flood_fill->nbr_exit = 0;
 	fill(game->flood_fill->y, game->flood_fill->x, game, 'A');
-	ft_cleanup_split(game->flood_fill->map, game->map->height);
 	if (game->total_collectibles != game->flood_fill->total_collectibles
 		|| game->nbr_exit != game->flood_fill->nbr_exit)
 		return (0);

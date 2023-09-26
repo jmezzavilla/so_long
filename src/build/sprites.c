@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:46:51 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/23 14:41:37 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/09/26 21:45:03 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	load_sprite(t_game *game, char *sprite_type, char *path, int pos)
 		return ;
 	target->img = mlx_xpm_file_to_image(game->mlx, path, &target->width,
 			&target->height);
+	if(!target->img)
+		error_msg("Error: Corrupted Sprite",game);
 	target->addr = mlx_get_data_addr(target->img, &target->bits_per_pixel,
 			&target->line_length, &target->endian);
 }
