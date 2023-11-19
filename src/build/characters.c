@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 20:56:05 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/26 14:46:18 by jealves-         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:11:52 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ void	build_collectible(t_game *game, int x, int y)
 	collectible->animation = 0;
 	collectible->animation_pos = 0;
 	game->total_collectibles++;
-	if (game->collectibles == NULL)
-		game->collectibles = ft_lstnew(collectible);
-	else
-		ft_lstadd_back(&game->collectibles, ft_lstnew(collectible));
+	ft_lstadd_back(&game->collectibles, ft_lstnew(collectible));
 }
 
 void	build_enemy(t_game *game, int x, int y)
@@ -80,8 +77,5 @@ void	build_enemy(t_game *game, int x, int y)
 	enemy->last_coord = ft_calloc(sizeof(t_coord), 1);
 	if (enemy->last_coord == NULL)
 		error_msg("Error: Memory enemy->last_coord", game);
-	if (game->enemies == NULL)
-		game->enemies = ft_lstnew(enemy);
-	else
-		ft_lstadd_back(&game->enemies, ft_lstnew(enemy));
+	ft_lstadd_back(&game->enemies, ft_lstnew(enemy));
 }
